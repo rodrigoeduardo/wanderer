@@ -1,0 +1,24 @@
+{
+    "majorLocations": [
+        {
+            "name": "village",
+            "minorLocations": [""]
+        },
+        {
+            "name": "big city",
+            "minorLocations": [""]
+        },
+        {
+            "name": "vault",
+            "minorLocations": [""]
+        },
+        {
+            "name": "crater",
+            "minorLocations": [""]
+        },
+        {
+            "name": "highway",
+            "minorLocations": [""]
+        }
+    ]
+}
