@@ -102,8 +102,8 @@ public class Game : MonoBehaviour
                 return;
             }
 
-            if (input > 10 || input < 0) {
-                typewriter.AddNewLine("[ERROR] Please enter an integer between 0 and 10.");
+            if (input > 10 || input < 1) {
+                typewriter.AddNewLine("[ERROR] Please enter an integer between 1 and 10.");
                 return;
             }
 
