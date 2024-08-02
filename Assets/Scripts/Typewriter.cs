@@ -75,7 +75,7 @@ public class Typewriter : MonoBehaviour
 	}
 
     void Update() {
-        if (Input.GetKey(KeyCode.Space)) {
+        if (Input.GetKey(KeyCode.LeftShift)) {
             timeBtwChars = 0.03f;
         } else {
             timeBtwChars = 0.05f;
