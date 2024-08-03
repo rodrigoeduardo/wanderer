@@ -1,0 +1,11 @@
+{
+    "enemies": [
+        {
+            "name": "Savage Dog",
+            "baseProbability": 0.5,
+            "levelMultiplier": -0.02,
+            "minProbability": 0.05,
+            "xp": 200
+        }
+    ]
+}

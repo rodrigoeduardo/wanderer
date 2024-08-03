@@ -1,12 +1,13 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
     public TextAsset locationsJson;
-    public MajorLocation[] majorLocations;
+    public List<MajorLocation> majorLocations;
 
     public Typewriter typewriter;
     public TMP_InputField inputField;
@@ -16,9 +17,10 @@ public class Game : MonoBehaviour
 
     bool hasStarted = false;
 
-    string buffer = "";
-
     public Player player = new();
+
+    public List<MajorLocation> possibleMajorLocations = new();
+    public MajorLocation currentMajorLocation;
 
     // Start is called before the first frame update
     void Start()
@@ -44,8 +46,7 @@ public class Game : MonoBehaviour
         AskUserStatValue(1);
     }
 
-    void GetUserInput(string line, Action<string> response) {
-        typewriter.AddNewLine(line);
+    void GetUserInput(Action<string> response) {
         inputField.ActivateInputField();
         userInputSignal.Activate();
         inputField.onEndEdit.AddListener(val => {
@@ -54,6 +55,16 @@ public class Game : MonoBehaviour
                 inputField.text = "";
             }
         });
+    }
+
+    void RespondUserCommand(string command) {
+        switch (command)
+        {
+            case "":
+            default:
+                typewriter.AddNewLine("[ERROR] Command not recognized.");
+                break;
+        }
     }
 
     void AskUserStatValue(int statIndex) {
@@ -93,7 +104,8 @@ public class Game : MonoBehaviour
                 return;
         }
 
-        GetUserInput(stat + ":", (response) => {
+        typewriter.AddNewLine(stat + ":");
+        GetUserInput((response) => {
             int input;
             try {
                 input = int.Parse(response);
@@ -146,20 +158,45 @@ public class Game : MonoBehaviour
     }
 
     void StartAdventure() {
-        MajorLocation location1 = majorLocations[(int)UnityEngine.Random.Range(0f, majorLocations.Length - 1f)];
-        MajorLocation location2 = majorLocations[(int)UnityEngine.Random.Range(0f, majorLocations.Length - 1f)];
-        while (location2.name.Equals(location1.name)) {
-            location2 = majorLocations[(int)UnityEngine.Random.Range(0f, majorLocations.Length - 1f)];
-        }
+        List<MajorLocation> twoLocations = GetRandomLocations(2);
 
         typewriter.SkipLine();
         typewriter.AddNewLine("- Okay. Let's do this.");
         typewriter.AddNewLine("<i>The vault door opens slowly.</i>");
         typewriter.AddNewLine("You can see the sun shining for the first time before your eyes.");
-        buffer = string.Format("You see on the horizon: a {0} and a {1}.", location1.name, location2.name);
-        typewriter.AddLine(buffer);
+        possibleMajorLocations.AddRange(twoLocations);
+        typewriter.AddLine($"You see on the horizon: a {twoLocations[0].name} and a {twoLocations[1].name}.");
         typewriter.AddNewLine("Where do you wanna go?");
+    }
 
-        buffer = "";
+    public List<MajorLocation> GetRandomLocations(int count)
+    {
+        List<MajorLocation> selectedLocations = new();
+        double totalProbability = 0.0;
+        
+        List<MajorLocation> availableLocations = new(majorLocations);
+
+        for (int i = 0; i < count; i++)
+        {
+            foreach (MajorLocation location in availableLocations)
+            {
+                totalProbability += location.probability;
+            }
+            double randomValue = UnityEngine.Random.Range(0f, 1f) * totalProbability;
+            double cumulativeProbability = 0.0;
+
+            for (int j = 0; j < availableLocations.Count; j++)
+            {
+                cumulativeProbability += availableLocations[j].probability;
+                if (randomValue <= cumulativeProbability)
+                {
+                    selectedLocations.Add(availableLocations[j]);
+                    availableLocations.RemoveAt(j);
+                    break;
+                }
+            }
+        }
+
+        return selectedLocations;
     }
 }

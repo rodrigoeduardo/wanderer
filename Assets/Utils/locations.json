@@ -1,24 +1,604 @@
 {
     "majorLocations": [
         {
-            "name": "village",
-            "minorLocations": [""]
+            "name": "Abandoned City",
+            "probability": 0.15,
+            "description": "You see the remnants of towering skyscrapers looming over the desolate streets. The air is thick with decay and the eerie silence is occasionally broken by distant echoes.",
+            "minorLocations": [
+                {
+                    "name": "City Center",
+                    "probability": 0.3,
+                    "description": "You feel the presence of ruined skyscrapers and looted shops standing as silent witnesses to the chaos that once engulfed this place.",
+                    "events": [
+                        {
+                            "name": "Scavenger Encounter",
+                            "description": "A group of scavengers appear, searching for valuable items among the ruins.",
+                            "probability": 0.4
+                        },
+                        {
+                            "name": "Building Collapse",
+                            "description": "You hear a sudden rumble as part of a building collapses nearby.",
+                            "probability": 0.2
+                        }
+                    ]
+                },
+                {
+                    "name": "Subway Station",
+                    "probability": 0.2,
+                    "description": "You glance at the collapsed tunnels and abandoned trains, creating a labyrinthine underworld filled with darkness and mystery.",
+                    "events": [
+                        {
+                            "name": "Mutant Ambush",
+                            "description": "A group of mutants emerges from the shadows, ready to attack.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Hidden Cache",
+                            "description": "You discover a hidden cache of supplies tucked away in an old maintenance room.",
+                            "probability": 0.5
+                        }
+                    ]
+                },
+                {
+                    "name": "Central Park",
+                    "probability": 0.3,
+                    "description": "It feels overgrown with wild vegetation, this once-beautiful park now hides makeshift shelters and forgotten secrets.",
+                    "events": [
+                        {
+                            "name": "Wild Animal Encounter",
+                            "description": "You hear the rustle of leaves as a wild animal appears, eyeing you cautiously.",
+                            "probability": 0.4
+                        },
+                        {
+                            "name": "Hidden Survivor",
+                            "description": "A lone survivor emerges from a hidden shelter, seeking help.",
+                            "probability": 0.3
+                        }
+                    ]
+                },
+                {
+                    "name": "Residential District",
+                    "probability": 0.2,
+                    "description": "You see destroyed homes and hidden caches that tell tales of the families that once lived here, now long gone.",
+                    "events": [
+                        {
+                            "name": "Booby Trap",
+                            "description": "You trigger a booby trap set by former residents, narrowly avoiding injury.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Secret Basement",
+                            "description": "You discover a secret basement filled with old supplies and personal belongings.",
+                            "probability": 0.5
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "name": "big city",
-            "minorLocations": [""]
+            "name": "Military Base",
+            "probability": 0.1,
+            "description": "You feel the imposing structure with fortified walls and abandoned equipment, this base once held the promise of protection and power.",
+            "minorLocations": [
+                {
+                    "name": "Headquarters",
+                    "probability": 0.4,
+                    "description": "You glance at the deserted offices and secret archives hinting at the strategic decisions made within these walls.",
+                    "events": [
+                        {
+                            "name": "Security System Activation",
+                            "description": "The old security system activates, creating an obstacle to navigate.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Lost Plans",
+                            "description": "You find strategic plans left behind, revealing valuable information.",
+                            "probability": 0.4
+                        }
+                    ]
+                },
+                {
+                    "name": "Armory",
+                    "probability": 0.3,
+                    "description": "It gives a sense of vast depot of weapons and research labs, now gathering dust and cobwebs.",
+                    "events": [
+                        {
+                            "name": "Weapon Cache",
+                            "description": "You discover a cache of weapons, some still functional.",
+                            "probability": 0.5
+                        },
+                        {
+                            "name": "Ambush",
+                            "description": "A group of raiders ambushes you, trying to claim the weapons for themselves.",
+                            "probability": 0.2
+                        }
+                    ]
+                },
+                {
+                    "name": "Training Grounds",
+                    "probability": 0.2,
+                    "description": "You see obstacle courses and military vehicles lay abandoned, memories of the rigorous drills that once took place here.",
+                    "events": [
+                        {
+                            "name": "Patrol Encounter",
+                            "description": "A lone military patrol, left behind, mistakes you for an enemy.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Old Equipment",
+                            "description": "You find old military equipment that might be useful.",
+                            "probability": 0.4
+                        }
+                    ]
+                },
+                {
+                    "name": "Military Prison",
+                    "probability": 0.1,
+                    "description": "You hear echoes of the past haunting the cells and interrogation rooms, telling stories of those who were once held captive.",
+                    "events": [
+                        {
+                            "name": "Prisoner Ghost",
+                            "description": "You encounter the ghost of a former prisoner, lingering with unfinished business.",
+                            "probability": 0.2
+                        },
+                        {
+                            "name": "Hidden Exit",
+                            "description": "You discover a hidden exit used by escaping prisoners.",
+                            "probability": 0.3
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "name": "vault",
-            "minorLocations": [""]
+            "name": "Survivor Settlement",
+            "probability": 0.2,
+            "description": "You feel a beacon of hope amidst the desolation, this settlement is a bustling hub of activity where survivors have rebuilt their lives.",
+            "minorLocations": [
+                {
+                    "name": "Market",
+                    "probability": 0.3,
+                    "description": "You see stalls and workshops buzzing with the trade and barter of goods essential for survival.",
+                    "events": [
+                        {
+                            "name": "Weapon Vendor",
+                            "description": "A vendor appears, offering rare weapons for trade.",
+                            "probability": 0.4
+                        },
+                        {
+                            "name": "Thief Encounter",
+                            "description": "You catch a thief trying to steal supplies from a stall.",
+                            "probability": 0.3
+                        }
+                    ]
+                },
+                {
+                    "name": "Village",
+                    "probability": 0.3,
+                    "description": "You look at the simple huts and cultivated fields, a testament to the resilience and ingenuity of its inhabitants.",
+                    "events": [
+                        {
+                            "name": "Crop Failure",
+                            "description": "You notice the crops are failing due to contaminated soil.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Community Gathering",
+                            "description": "You join a community gathering, learning about the villagers' struggles and hopes.",
+                            "probability": 0.4
+                        }
+                    ]
+                },
+                {
+                    "name": "Security Post",
+                    "probability": 0.2,
+                    "description": "You see a lookout tower and communal armory ensuring the safety and defense of the settlement.",
+                    "events": [
+                        {
+                            "name": "Guard Patrol",
+                            "description": "You encounter a patrol of guards maintaining order.",
+                            "probability": 0.4
+                        },
+                        {
+                            "name": "Alarm Trigger",
+                            "description": "The security alarm is triggered, putting the settlement on high alert.",
+                            "probability": 0.3
+                        }
+                    ]
+                },
+                {
+                    "name": "Hospital",
+                    "probability": 0.2,
+                    "description": "You hear the bustling of an improvised clinic stocked with precious medical supplies, offering a glimmer of hope for the sick and injured.",
+                    "events": [
+                        {
+                            "name": "Medicine Shortage",
+                            "description": "You find the hospital struggling with a shortage of critical medicines.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Injured Survivor",
+                            "description": "You assist in treating a severely injured survivor who just arrived.",
+                            "probability": 0.4
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "name": "crater",
-            "minorLocations": [""]
+            "name": "Industrial Ruins",
+            "probability": 0.15,
+            "description": "You see a once hub of manufacturing and progress, now a graveyard of twisted metal and broken machinery.",
+            "minorLocations": [
+                {
+                    "name": "Automobile Factory",
+                    "probability": 0.3,
+                    "description": "You look at the silent assembly lines and unfinished vehicles standing as relics of a bygone era of industry.",
+                    "events": [
+                        {
+                            "name": "Machine Activation",
+                            "description": "You accidentally activate a machine, causing a loud commotion.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Hidden Workshop",
+                            "description": "You discover a hidden workshop still functioning.",
+                            "probability": 0.4
+                        }
+                    ]
+                },
+                {
+                    "name": "Power Plant",
+                    "probability": 0.3,
+                    "description": "It feels like silent generators and control rooms tell of a time when electricity powered the world.",
+                    "events": [
+                        {
+                            "name": "Generator Surge",
+                            "description": "A generator suddenly surges, sparking dangerously.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Energy Source",
+                            "description": "You find a small but functional energy source.",
+                            "probability": 0.4
+                        }
+                    ]
+                },
+                {
+                    "name": "Scrapyard",
+                    "probability": 0.2,
+                    "description": "You see mountains of scrap metal and makeshift workshops serving as a resource for the desperate and the inventive.",
+                    "events": [
+                        {
+                            "name": "Scrap Dealer",
+                            "description": "A scrap dealer offers to trade valuable parts.",
+                            "probability": 0.4
+                        },
+                        {
+                            "name": "Hidden Treasure",
+                            "description": "You find a hidden treasure among the piles of scrap.",
+                            "probability": 0.3
+                        }
+                    ]
+                },
+                {
+                    "name": "Chemical Complex",
+                    "probability": 0.2,
+                    "description": "You see leaking tanks and abandoned laboratories holding the dangerous remnants of chemical experiments.",
+                    "events": [
+                        {
+                            "name": "Chemical Spill",
+                            "description": "A chemical spill poses a dangerous hazard.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Mutated Creature",
+                            "description": "You encounter a mutated creature born from the toxic waste.",
+                            "probability": 0.2
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "name": "highway",
-            "minorLocations": [""]
+            "name": "Deserted University",
+            "probability": 0.1,
+            "description": "You feel a place of learning and innovation now lying in ruin, its halls echoing with the ghosts of students and scholars.",
+            "minorLocations": [
+                {
+                    "name": "Library",
+                    "probability": 0.3,
+                    "description": "You glance at the dusty books and data archives offering knowledge and secrets from the past, waiting to be rediscovered.",
+                    "events": [
+                        {
+                            "name": "Book Discovery",
+                            "description": "You find an ancient book with valuable information.",
+                            "probability": 0.4
+                        },
+                        {
+                            "name": "Library Collapse",
+                            "description": "Part of the library collapses, blocking your way.",
+                            "probability": 0.2
+                        }
+                    ]
+                },
+                {
+                    "name": "Research Labs",
+                    "probability": 0.3,
+                    "description": "You see scientific equipment and abandoned experiments hinting at the groundbreaking work that was once conducted here.",
+                    "events": [
+                        {
+                            "name": "Experiment Gone Wrong",
+                            "description": "An old experiment suddenly reactivates, causing chaos.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Research Notes",
+                            "description": "You find detailed research notes that could prove useful.",
+                            "probability": 0.4
+                        }
+                    ]
+                },
+                {
+                    "name": "Dormitories",
+                    "probability": 0.2,
+                    "description": "You look at the ravaged rooms and makeshift refuges speaking of the students who once called this place home.",
+                    "events": [
+                        {
+                            "name": "Ghost Encounter",
+                            "description": "You encounter the ghost of a former student, lingering with unfinished business.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Hidden Journal",
+                            "description": "You find a hidden journal detailing the final days of the university.",
+                            "probability": 0.4
+                        }
+                    ]
+                },
+                {
+                    "name": "Auditorium",
+                    "probability": 0.2,
+                    "description": "You hear collapsed classrooms and lecture halls now serving as haunting reminders of a world that once valued knowledge.",
+                    "events": [
+                        {
+                            "name": "Old Lecture",
+                            "description": "You find an old lecture recording that sheds light on past events.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Structural Collapse",
+                            "description": "Part of the auditorium collapses, creating a dangerous situation.",
+                            "probability": 0.2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Underground Shelter",
+            "probability": 0.15,
+            "description": "You feel a subterranean refuge designed to withstand the apocalypse, now a labyrinth of survival and decay.",
+            "minorLocations": [
+                {
+                    "name": "Command Center",
+                    "probability": 0.3,
+                    "description": "You glance at the control panels and strategic maps lying abandoned, remnants of the plans once made to survive the apocalypse.",
+                    "events": [
+                        {
+                            "name": "Control Panel Activation",
+                            "description": "You accidentally activate an old control panel, causing a system reboot.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Map Discovery",
+                            "description": "You find an old map detailing unexplored areas of the shelter.",
+                            "probability": 0.4
+                        }
+                    ]
+                },
+                {
+                    "name": "Living Quarters",
+                    "probability": 0.3,
+                    "description": "You see dormitories and mess halls where survivors once sought safety and community.",
+                    "events": [
+                        {
+                            "name": "Hidden Room",
+                            "description": "You discover a hidden room filled with personal belongings.",
+                            "probability": 0.4
+                        },
+                        {
+                            "name": "Ghostly Whisper",
+                            "description": "You hear ghostly whispers from the past, filling you with unease.",
+                            "probability": 0.2
+                        }
+                    ]
+                },
+                {
+                    "name": "Maintenance Area",
+                    "probability": 0.2,
+                    "description": "You glance at the workshops and generators, the heart of the shelter’s infrastructure now silent and still.",
+                    "events": [
+                        {
+                            "name": "Generator Failure",
+                            "description": "A generator suddenly fails, plunging the area into darkness.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Tool Discovery",
+                            "description": "You find a set of tools that could prove useful.",
+                            "probability": 0.4
+                        }
+                    ]
+                },
+                {
+                    "name": "Supply Depot",
+                    "probability": 0.2,
+                    "description": "You see warehouses stocked with food, water, and medical supplies, the lifeblood of the underground community.",
+                    "events": [
+                        {
+                            "name": "Supply Shortage",
+                            "description": "You discover a critical shortage of supplies, causing panic.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Supply Drop",
+                            "description": "You find a hidden supply drop left behind by previous occupants.",
+                            "probability": 0.4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Devastated Countryside",
+            "probability": 0.1,
+            "description": "You feel a once-idyllic rural landscape now scarred by the ravages of nuclear fallout and time.",
+            "minorLocations": [
+                {
+                    "name": "Abandoned Farm",
+                    "probability": 0.3,
+                    "description": "You see fields overrun with weeds and barns crumbling to dust, memories of a simpler time.",
+                    "events": [
+                        {
+                            "name": "Wild Animal Attack",
+                            "description": "You are suddenly attacked by a wild animal protecting its territory.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Old Farm Equipment",
+                            "description": "You discover old farm equipment that might still be useful.",
+                            "probability": 0.4
+                        }
+                    ]
+                },
+                {
+                    "name": "Contaminated Lake",
+                    "probability": 0.2,
+                    "description": "You look at the radioactive waters teeming with mutated wildlife, a hazardous reminder of the fallout.",
+                    "events": [
+                        {
+                            "name": "Water Contamination",
+                            "description": "You accidentally come into contact with contaminated water, posing a health risk.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Mutant Fish",
+                            "description": "You see a mutant fish, a testament to the lake's contamination.",
+                            "probability": 0.4
+                        }
+                    ]
+                },
+                {
+                    "name": "Destroyed Village",
+                    "probability": 0.3,
+                    "description": "You glance at the ruined homes and derelict churches telling of a community that once thrived here.",
+                    "events": [
+                        {
+                            "name": "Ghost Town",
+                            "description": "You feel the eerie presence of a ghost town, as if the spirits of the past still linger.",
+                            "probability": 0.4
+                        },
+                        {
+                            "name": "Hidden Bunker",
+                            "description": "You discover a hidden bunker beneath one of the houses.",
+                            "probability": 0.3
+                        }
+                    ]
+                },
+                {
+                    "name": "Mutant Forest",
+                    "probability": 0.2,
+                    "description": "You feel twisted trees and unnatural wildlife creating a forest that is both beautiful and terrifying.",
+                    "events": [
+                        {
+                            "name": "Mutant Creature Attack",
+                            "description": "A mutant creature suddenly attacks you from the shadows.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Rare Herb",
+                            "description": "You find a rare herb that could be valuable for medicine or trade.",
+                            "probability": 0.4
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Port City",
+            "probability": 0.12,
+            "description": "A once-bustling hub of trade and travel, now a decaying waterfront haunted by the specters of the past. You see crumbling piers and hear the distant call of seagulls echoing through the empty streets.",
+            "minorLocations": [
+                {
+                    "name": "Docks",
+                    "probability": 0.3,
+                    "description": "Sunken ships and abandoned containers line the decaying piers, whispering tales of lost voyages. You feel the cool breeze carrying the scent of salt and rust.",
+                    "events": [
+                        {
+                            "name": "Looters",
+                            "description": "You encounter a group of looters scavenging the area for valuable items.",
+                            "probability": 0.4
+                        },
+                        {
+                            "name": "Capsized Ship",
+                            "description": "You discover a capsized ship with potential supplies still on board.",
+                            "probability": 0.3
+                        }
+                    ]
+                },
+                {
+                    "name": "Fish Market",
+                    "probability": 0.3,
+                    "description": "Deserted stalls and warehouses that once buzzed with life, now silent and desolate. You see rotting wooden stalls and the remnants of seafood scattered around.",
+                    "events": [
+                        {
+                            "name": "Mysterious Stranger",
+                            "description": "A mysterious stranger offers you valuable information in exchange for help.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Market Collapse",
+                            "description": "Part of the market collapses, creating a dangerous situation.",
+                            "probability": 0.2
+                        }
+                    ]
+                },
+                {
+                    "name": "Lighthouse",
+                    "probability": 0.2,
+                    "description": "A deteriorating beacon that once guided ships safely to shore, now a lonely sentinel. You look up at the towering structure, its light long extinguished.",
+                    "events": [
+                        {
+                            "name": "Old Journal",
+                            "description": "You find an old journal detailing the lighthouse keeper's last days.",
+                            "probability": 0.3
+                        },
+                        {
+                            "name": "Signal Flare",
+                            "description": "You discover a functional signal flare that could be used in emergencies.",
+                            "probability": 0.4
+                        }
+                    ]
+                },
+                {
+                    "name": "Suburbs",
+                    "probability": 0.2,
+                    "description": "Abandoned homes and schools, echoes of a community that has long since vanished. You feel the eerie silence and see overgrown lawns and broken windows.",
+                    "events": [
+                        {
+                            "name": "Hidden Stash",
+                            "description": "You find a hidden stash of supplies in one of the houses.",
+                            "probability": 0.4
+                        },
+                        {
+                            "name": "Bandit Raid",
+                            "description": "You encounter a bandit raid in progress, forcing you to choose between fight or flight.",
+                            "probability": 0.3
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

@@ -19,7 +19,7 @@ public class HealthScript : MonoBehaviour
 
     public void EnableHP() {
         game.player.hp = game.player.maxHp;
-        text.text = string.Format("HP [-----] {0}/{0}", game.player.hp);
+        text.text = $"HP [-----] {game.player.hp}/{game.player.hp}";
         text.enabled = true;
     }
 
@@ -29,7 +29,7 @@ public class HealthScript : MonoBehaviour
         for (int i = 0; i < game.player.hp / game.player.maxHp; i++) {
             dashedHp += "-";
         }
-        text.text = string.Format("HP [{0}] {1}/{2}", dashedHp.PadRight(5, ' '), game.player.hp, game.player.maxHp);
+        text.text = $"HP [{dashedHp.PadRight(5, ' ')}] {game.player.hp}/{game.player.maxHp}";
     }
 
     void Update() {
