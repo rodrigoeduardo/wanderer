@@ -21,8 +21,8 @@ public class Game : MonoBehaviour
     public Player player = new();
 
     public List<MajorLocation> possibleMajorLocations = new();
-    public MajorLocation currentMajorLocation;
-    public MinorLocation currentMinorLocation;
+    MajorLocation currentMajorLocation;
+    MinorLocation currentMinorLocation;
 
     // Start is called before the first frame update
     void Start()
@@ -245,16 +245,12 @@ public class Game : MonoBehaviour
     public List<MajorLocation> GetRandomLocations(int count)
     {
         List<MajorLocation> selectedLocations = new();
-        double totalProbability = 0.0;
         
         List<MajorLocation> availableLocations = new(majorLocations);
 
         for (int i = 0; i < count; i++)
         {
-            foreach (MajorLocation location in availableLocations)
-            {
-                totalProbability += location.probability;
-            }
+            double totalProbability = availableLocations.Sum(location => location.probability);
             double randomValue = UnityEngine.Random.Range(0f, 1f) * totalProbability;
             double cumulativeProbability = 0.0;
 
@@ -264,7 +260,7 @@ public class Game : MonoBehaviour
                 if (randomValue <= cumulativeProbability)
                 {
                     selectedLocations.Add(availableLocations[j]);
-                    availableLocations.RemoveAt(j); // ACHO Q O PROBLEMA TA AQUI DE ARGUMENTOUTOFRANGEEXCEPTION
+                    availableLocations.RemoveAt(j);
                     break;
                 }
             }
