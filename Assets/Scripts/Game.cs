@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +22,7 @@ public class Game : MonoBehaviour
     public Player player = new();
 
     public List<MajorLocation> possibleMajorLocations = new();
+    public List<MinorLocation> possibleMinorLocations = new();
     MajorLocation currentMajorLocation;
     MinorLocation currentMinorLocation;
 
@@ -77,6 +79,18 @@ public class Game : MonoBehaviour
     }
 
     void RespondUserCommand(string command) {
+        void PromptMajorLocation() {
+            typewriter.AddNewLine(currentMajorLocation.description);
+
+            if (possibleMinorLocations.Count == 0) {
+                int randomMinorLocationsQuantity = (int)UnityEngine.Random.Range(1f, currentMajorLocation.minorLocations.Count);
+                possibleMinorLocations = GetRandomMinorLocations(randomMinorLocationsQuantity);
+            }
+
+            typewriter.AddLine("You look around and see");
+            typewriter.AddLine(Utils.ConvertMinorLocationsToString(possibleMinorLocations) + ".");
+        }
+
         string normalizedInput = command.ToLower();
         string[] words = normalizedInput.Split(' ');
 
@@ -89,8 +103,9 @@ public class Game : MonoBehaviour
                 case "leave": {
                     if (currentMinorLocation != null) {
                         typewriter.AddNewLine($"You step outside from {currentMinorLocation.name}.");
-                        typewriter.AddNewLine(currentMajorLocation.name);
                         currentMinorLocation = null;
+
+                        PromptMajorLocation();
                         return;
                     } else if (currentMajorLocation != null) {
                         typewriter.AddNewLine($"You leave {currentMajorLocation.name} now a more experienced wanderer. Ready for new challenges.");
@@ -113,12 +128,12 @@ public class Game : MonoBehaviour
         if (currentMajorLocation == null) {
             MajorLocation location = possibleMajorLocations.FirstOrDefault(location => normalizedInput.Contains(location.name.ToLower()));
             if (location == null) {
-                print("asdiasd1");
                 CommandNotRecognized();
                 return;
             }
             currentMajorLocation = location;
-            typewriter.AddNewLine(currentMajorLocation.description);
+
+            PromptMajorLocation();
 
             possibleMajorLocations.Clear();
             return;
@@ -133,7 +148,6 @@ public class Game : MonoBehaviour
             return;
         }
 
-        print("askdsdk222");
         CommandNotRecognized();
     }
 
@@ -227,7 +241,7 @@ public class Game : MonoBehaviour
         health.EnableHP();
         level.EnableLevel();
 
-        List<MajorLocation> twoLocations = GetRandomLocations(2);
+        List<MajorLocation> twoLocations = GetRandomMajorLocations(2);
 
         typewriter.SkipLine();
         typewriter.AddNewLine("- Okay. Let's do this.");
@@ -242,11 +256,38 @@ public class Game : MonoBehaviour
         });
     }
 
-    public List<MajorLocation> GetRandomLocations(int count)
+    public List<MajorLocation> GetRandomMajorLocations(int count)
     {
         List<MajorLocation> selectedLocations = new();
         
         List<MajorLocation> availableLocations = new(majorLocations);
+
+        for (int i = 0; i < count; i++)
+        {
+            double totalProbability = availableLocations.Sum(location => location.probability);
+            double randomValue = UnityEngine.Random.Range(0f, 1f) * totalProbability;
+            double cumulativeProbability = 0.0;
+
+            for (int j = 0; j < availableLocations.Count; j++)
+            {
+                cumulativeProbability += availableLocations[j].probability;
+                if (randomValue <= cumulativeProbability)
+                {
+                    selectedLocations.Add(availableLocations[j]);
+                    availableLocations.RemoveAt(j);
+                    break;
+                }
+            }
+        }
+
+        return selectedLocations;
+    }
+
+    public List<MinorLocation> GetRandomMinorLocations(int count)
+    {
+        List<MinorLocation> selectedLocations = new();
+        
+        List<MinorLocation> availableLocations = new(currentMajorLocation.minorLocations);
 
         for (int i = 0; i < count; i++)
         {

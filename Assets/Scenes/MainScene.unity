@@ -160,6 +160,7 @@ MonoBehaviour:
   level: {fileID: 1506997192}
   userInputSignal: {fileID: 455749876}
   possibleMajorLocations: []
+  possibleMinorLocations: []
 --- !u!4 &94668051
 Transform:
   m_ObjectHideFlags: 0
@@ -269,7 +270,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: HP [-----] 99/99
+  m_text: HP [-----] 999/999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2b6c9e3cdf235bd478bb555208b4f681, type: 2}
   m_sharedMaterial: {fileID: 6216704935460626144, guid: 2b6c9e3cdf235bd478bb555208b4f681, type: 2}

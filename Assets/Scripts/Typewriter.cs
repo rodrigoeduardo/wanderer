@@ -226,6 +226,7 @@ public class Typewriter : MonoBehaviour
             buffer = buffer.Remove(0, 1);
 			tmpProText.text += leadingChar;
 			yield return new WaitForSeconds(timeBtwChars);
+			count++;
         }
 
 		if (leadingChar != "")
