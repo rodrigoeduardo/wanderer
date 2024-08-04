@@ -26,5 +26,6 @@ public class Inventory {
         if (equippedApparel != null) {
             tw.AddNewLine(equippedApparel.name + "is EQUIPPED.");
         }
+        tw.SkipLine();
     }
 }

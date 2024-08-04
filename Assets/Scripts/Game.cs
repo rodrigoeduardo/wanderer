@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +22,7 @@ public class Game : MonoBehaviour
 
     public List<MajorLocation> possibleMajorLocations = new();
     public MajorLocation currentMajorLocation;
+    public MinorLocation currentMinorLocation;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,18 @@ public class Game : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return) && !hasStarted && Time.time > 2f) {
+            // FOR TESTING PURPOSES ONLY
+            player.special.strength = 1;
+            player.special.perception = 1;
+            player.special.endurance = 1;
+            player.special.charisma = 1;
+            player.special.intelligence = 1;
+            player.special.agility = 1;
+            player.special.luck = 1;
+            hasStarted = true;
+            StartAdventure();
+            return;
+
             hasStarted = true;
             StartGame();
         }
@@ -56,22 +70,75 @@ public class Game : MonoBehaviour
             }
         });
     }
+    
+    void EndUserInput() {
+        inputField.onEndEdit.RemoveAllListeners();
+        userInputSignal.Deactivate();
+    }
 
     void RespondUserCommand(string command) {
-        switch (command)
-        {
-            case "":
-            default:
-                typewriter.AddNewLine("[ERROR] Command not recognized.");
-                break;
+        string normalizedInput = command.ToLower();
+        string[] words = normalizedInput.Split(' ');
+
+        foreach (string word in words) {
+            switch (word)
+            {
+                case "inventory":
+                    player.inventory.Prompt(typewriter);
+                    return;
+                case "leave": {
+                    if (currentMinorLocation != null) {
+                        typewriter.AddNewLine($"You step outside from {currentMinorLocation.name}.");
+                        typewriter.AddNewLine(currentMajorLocation.name);
+                        currentMinorLocation = null;
+                        return;
+                    } else if (currentMajorLocation != null) {
+                        typewriter.AddNewLine($"You leave {currentMajorLocation.name} now a more experienced wanderer. Ready for new challenges.");
+                        currentMajorLocation = null;
+                        return;
+                    }
+
+                    typewriter.AddNewLine("You wander amidst the desolation and ruins, but you find yourself in no particular place yet.");
+                    return;
+                }
+                default:
+                    break;
+            }
         }
+
+        void CommandNotRecognized() {
+            typewriter.AddNewLine("[ERROR] Command not recognized.");
+        }
+
+        if (currentMajorLocation == null) {
+            MajorLocation location = possibleMajorLocations.FirstOrDefault(location => normalizedInput.Contains(location.name.ToLower()));
+            if (location == null) {
+                print("asdiasd1");
+                CommandNotRecognized();
+                return;
+            }
+            currentMajorLocation = location;
+            typewriter.AddNewLine(currentMajorLocation.description);
+
+            possibleMajorLocations.Clear();
+            return;
+        } else if (currentMinorLocation == null) {
+            MinorLocation location = currentMajorLocation.minorLocations.FirstOrDefault(location => normalizedInput.Contains(location.name.ToLower()));
+            if (location == null) {
+                CommandNotRecognized();
+                return;
+            }
+            currentMinorLocation = location;
+            typewriter.AddNewLine(currentMinorLocation.description);
+            return;
+        }
+
+        print("askdsdk222");
+        CommandNotRecognized();
     }
 
     void AskUserStatValue(int statIndex) {
         if (statIndex == 8) {
-            health.EnableHP();
-            level.EnableLevel();
-
             StartAdventure();
             return;
         }
@@ -151,13 +218,15 @@ public class Game : MonoBehaviour
             }
 
             typewriter.AddNewLine("Okay. " + input + " for " + stat + ".");
-            inputField.onEndEdit.RemoveAllListeners();
-            userInputSignal.Deactivate();
+            EndUserInput();
             AskUserStatValue(++statIndex);
         });
     }
 
     void StartAdventure() {
+        health.EnableHP();
+        level.EnableLevel();
+
         List<MajorLocation> twoLocations = GetRandomLocations(2);
 
         typewriter.SkipLine();
@@ -165,8 +234,12 @@ public class Game : MonoBehaviour
         typewriter.AddNewLine("<i>The vault door opens slowly.</i>");
         typewriter.AddNewLine("You can see the sun shining for the first time before your eyes.");
         possibleMajorLocations.AddRange(twoLocations);
-        typewriter.AddLine($"You see on the horizon: a {twoLocations[0].name} and a {twoLocations[1].name}.");
+        typewriter.AddLine($"You see on the horizon: a {possibleMajorLocations[0].name} and a {possibleMajorLocations[1].name}.");
         typewriter.AddNewLine("Where do you wanna go?");
+
+        GetUserInput((response) => {
+            RespondUserCommand(response);
+        });
     }
 
     public List<MajorLocation> GetRandomLocations(int count)
@@ -191,7 +264,7 @@ public class Game : MonoBehaviour
                 if (randomValue <= cumulativeProbability)
                 {
                     selectedLocations.Add(availableLocations[j]);
-                    availableLocations.RemoveAt(j);
+                    availableLocations.RemoveAt(j); // ACHO Q O PROBLEMA TA AQUI DE ARGUMENTOUTOFRANGEEXCEPTION
                     break;
                 }
             }

@@ -159,6 +159,12 @@ MonoBehaviour:
   health: {fileID: 130039536}
   level: {fileID: 1506997192}
   userInputSignal: {fileID: 455749876}
+  possibleMajorLocations: []
+  currentMajorLocation:
+    name: 
+    description: 
+    probability: 0
+    minorLocations: []
 --- !u!4 &94668051
 Transform:
   m_ObjectHideFlags: 0
