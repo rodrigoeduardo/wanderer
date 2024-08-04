@@ -227,17 +227,6 @@ public class Typewriter : MonoBehaviour
 			yield return new WaitForSeconds(timeBtwChars);
         }
 
-		// foreach (char c in buffer)
-		// {
-		// 	if (tmpProText.text.Length > 0)
-		// 	{
-		// 		tmpProText.text = tmpProText.text.Substring(0, tmpProText.text.Length - leadingChar.Length);
-		// 	}
-		// 	tmpProText.text += c;
-		// 	tmpProText.text += leadingChar;
-		// 	yield return new WaitForSeconds(timeBtwChars);
-		// }
-
 		if (leadingChar != "")
 		{
 			tmpProText.text = tmpProText.text.Substring(0, tmpProText.text.Length - leadingChar.Length);
