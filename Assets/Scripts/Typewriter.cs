@@ -3,7 +3,6 @@
 // Want to get creative? Try a Unicode leading character(https://unicode-table.com/en/blocks/block-elements/)
 // Copy Paste from page into Inspector
 
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -190,7 +189,7 @@ public class Typewriter : MonoBehaviour
 		{
 			if (tmpProText.text.Length > 0)
 			{
-				tmpProText.text = tmpProText.text.Substring(0, tmpProText.text.Length - leadingChar.Length);
+				tmpProText.text = tmpProText.text[..^leadingChar.Length];
 			}
 			tmpProText.text += c;
 			tmpProText.text += leadingChar;
@@ -199,7 +198,7 @@ public class Typewriter : MonoBehaviour
 
 		if (leadingChar != "")
 		{
-			tmpProText.text = tmpProText.text.Substring(0, tmpProText.text.Length - leadingChar.Length);
+			tmpProText.text = tmpProText.text[..^leadingChar.Length];
 		}
 
         typing = false;
@@ -214,12 +213,14 @@ public class Typewriter : MonoBehaviour
 
         yield return new WaitForSeconds(delayBeforeStart);
 
+		int count = 0;
+
         while (buffer.Length > 0) {
             char c = buffer[0];
 
             if (tmpProText.text.Length > 0)
 			{
-				tmpProText.text = tmpProText.text.Substring(0, tmpProText.text.Length - leadingChar.Length);
+				if (count != 0) tmpProText.text = tmpProText.text[..^leadingChar.Length];
 			}
 			tmpProText.text += c;
             buffer = buffer.Remove(0, 1);
@@ -229,7 +230,7 @@ public class Typewriter : MonoBehaviour
 
 		if (leadingChar != "")
 		{
-			tmpProText.text = tmpProText.text.Substring(0, tmpProText.text.Length - leadingChar.Length);
+			if (count != 0) tmpProText.text = tmpProText.text[..^leadingChar.Length];
 		}
 
         buffer = "";
