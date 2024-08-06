@@ -110,6 +110,12 @@ public class Game : MonoBehaviour
                     } else if (currentMajorLocation != null) {
                         typewriter.AddNewLine($"You leave {currentMajorLocation.name} now a more experienced wanderer. Ready for new challenges.");
                         currentMajorLocation = null;
+
+                        int randomMajorLocationsQuantity = (int)UnityEngine.Random.Range(1f, majorLocations.Count);
+                        possibleMajorLocations = GetRandomMajorLocations(randomMajorLocationsQuantity);
+
+                        typewriter.AddNewLine("You see on the horizon:");
+                        typewriter.AddLine(Utils.ConvertMajorLocationsToString(possibleMajorLocations) + ".");
                         return;
                     }
 
@@ -241,13 +247,12 @@ public class Game : MonoBehaviour
         health.EnableHP();
         level.EnableLevel();
 
-        List<MajorLocation> twoLocations = GetRandomMajorLocations(2);
+        possibleMajorLocations = GetRandomMajorLocations(2);
 
         typewriter.SkipLine();
         typewriter.AddNewLine("- Okay. Let's do this.");
         typewriter.AddNewLine("<i>The vault door opens slowly.</i>");
         typewriter.AddNewLine("You can see the sun shining for the first time before your eyes.");
-        possibleMajorLocations.AddRange(twoLocations);
         typewriter.AddLine($"You see on the horizon: a {possibleMajorLocations[0].name} and a {possibleMajorLocations[1].name}.");
         typewriter.AddNewLine("Where do you wanna go?");
 
